@@ -1,100 +1,103 @@
 <div ng-controller="CompaniesCtrl">
 
-        <div class="form-group">
-            <label>
-                Company
-                <input ng-model="company.companyName" class="form-control" type="text" placeholder="company name">
-            </label>
-       
-</div>
+    <div class="form-group">
+        <label>
+            Company
+            <input ng-model="company.companyName" class="form-control" type="text" placeholder="company name">
+        </label>
 
-<div ng-controller="UsersCtrl">
+    </div>
 
-    <form>
+    <div ng-controller="UsersCtrl">
 
-        <div class="form-group">
-            <label>
-                Email
-                <input ng-model="user.email" class="form-control" type="email" placeholder="email@domain.com">
-            </label>
-        </div>
+        <form>
 
-        <div class="form-group">
-            <label>
-                First name
-                <input ng-model="user.firstName" class="form-control" type="text" placeholder="First name">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                Last Name
-                <input ng-model="user.lastName" class="form-control" type="text" placeholder="Last name">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                Password
-                <input ng-model="user.password" class="form-control" type="password" placeholder="password">
-            </label>
+            <div class="form-group">
+                <label>
+                    Email
+                    <input ng-model="user.email" class="form-control" type="email" placeholder="email@domain.com">
+                </label>
+            </div>
 
-            <br/>
-            <label>
-                Repeat Password
-                <input ng-model="user.repeatPassword" class="form-control" type="password" placeholder="Repeat password">
+            <div class="form-group">
+                <label>
+                    First name
+                    <input ng-model="user.firstName" class="form-control" type="text" placeholder="First name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    Last Name
+                    <input ng-model="user.lastName" class="form-control" type="text" placeholder="Last name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    Password
+                    <input ng-model="user.password" class="form-control" type="password" placeholder="password">
+                </label>
 
-            </label>
-        </div>
-        
-        <div class="form-group">
-            <button ng-click="addUser()" class="btn btn-md btn-success">Create user</button>
-        </div>
-</form>
-    
-    <br/>
-    <br/>
-    <button ng-click="listUsers()" class="btn btn-md btn-warning">List users</button>
+                <br/>
+                <label>
+                    Repeat Password
+                    <input ng-model="user.repeatPassword" class="form-control" type="password" placeholder="Repeat password">
+
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button ng-click="addUser()" class="btn btn-md btn-success">Create user</button>
+            </div>
+        </form>
+
+        <br/>
+        <br/>
+        <button ng-click="listUsers()" class="btn btn-md btn-warning">List users</button>
         <button ng-click="listCompanies()" class="btn btn-md btn-warning">List comapnies</button>
-    
-    <input ng-model="query" classs="form-control" type="text" placeholder="Search"> 
-    
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="u in users | filter:query">
-                <td>{{u.id}}</td>
-                <td>{{u.firstName}}</td>
-                <td>{{u.lastName}}</td>
-                <td>{{u.email}}</td>
-            </tr>
-        </tbody>
-    </table>
-    
+
+        <input ng-model="query" classs="form-control" type="text" placeholder="Search">
+
         <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Company Name</th>
-            <th>Email</th>
-            <th>Location</th>
-            <th>Billing Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="c in companies | filter:query">
-                <td>{{c.id}}</td>
-                <td>{{c.companyName}}</td>
-                <td>{{c.email}}</td>
-                <td>{{c.location}}</td>
-                <td>{{c.billing}}</td>
-            </tr>
-        </tbody>
-    </table>
- </div>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="u in users | filter:query">
+                    <td>{{u.id}}</td>
+                    <td>{{u.firstName}}</td>
+                    <td>{{u.lastName}}</td>
+                    <td>{{u.email}}</td>
+                    <td>
+                        <button ng-click="removeUser(u.id)" class="btn btn-sm btn-danger">DELETE</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Billing Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in companies | filter:query">
+                    <td>{{c.id}}</td>
+                    <td>{{c.companyName}}</td>
+                    <td>{{c.email}}</td>
+                    <td>{{c.location}}</td>
+                    <td>{{c.billing}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

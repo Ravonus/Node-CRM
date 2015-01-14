@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+ '$scope', '$filter', 'Users', function ($scope, $filter, Users)
 	
 };
 
