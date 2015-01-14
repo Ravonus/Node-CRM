@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en" ng-app="TicketApp">
+
+<head>
     <title>New Sails App</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+
     <!--  
         Stylesheets and Preprocessors
         ==============================
@@ -29,15 +30,17 @@
     -->
 
     <!--STYLES-->
+    
     <!--STYLES END-->
-  </head>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
 
-  <body>
+<body>
     <%- body %>
 
 
 
-    <!--
+        <!--
         Client-side Templates
         ========================
 
@@ -58,11 +61,12 @@
               stringfile before they're served.
     -->
 
-    <!--TEMPLATES-->
-    <!--TEMPLATES END-->
+        <!--TEMPLATES-->
+        
+        <!--TEMPLATES END-->
 
 
-    <!--
+        <!--
 
       Client-side Javascript
       ========================
@@ -86,6 +90,25 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/ticket-app/TicketApp.js"></script>
+    <script src="/js/ticket-app/controllers/CompaniesCtrl.js"></script>
+    <script src="/js/ticket-app/controllers/UsersCtrl.js"></script>
+    <script src="/js/ticket-app/services/Companies.js"></script>
+    <script src="/js/ticket-app/services/Users.js"></script>
     <!--SCRIPTS END-->
   </body>
+        <script src="/js/dependencies/sails.io.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/bower_components/angular/angular.min.js"></script>
+        <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+        
+        <script src="/js/ticket-app/TicketApp.js"></script>
+        <script src="/js/ticket-app/services/Users.js"></script>
+        <script src="/js/ticket-app/controllers/UsersCtrl.js"></script>
+        <script src="/js/ticket-app/services/Companies.js"></script>
+        <script src="/js/ticket-app/controllers/CompaniesCtrl.js"></script>
+</body>
+
 </html>
