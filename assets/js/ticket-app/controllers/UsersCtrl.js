@@ -15,7 +15,6 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
             password: null,
             repeatPassword: null,
             id: null,
-            nickname: 'barney'
         };
 
         $scope.addUser = function () {
@@ -94,6 +93,10 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
         };
 
         $scope.listUsers = function () {
+            $scope.users = Users.query();
+        };
+        
+                $scope.listUsers1 = function () {
             $scope.users = Users.query();
         };
 

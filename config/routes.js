@@ -35,6 +35,14 @@ module.exports.routes = {
     '/': {
         view: 'index'
     },
+    
+    '/user': {
+        view: 'user'
+    },
+    
+    '/user/:userId': {
+    view: 'user'
+  },
 
     '/home': {
         view: 'homepage'
