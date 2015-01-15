@@ -1,7 +1,7 @@
 /*global TicketApp */
 /*global console */
 
-var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter','$scope', 'Users',
+var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
     function ($filter, $scope, Users) {
         'use strict';
 
@@ -12,8 +12,10 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter','$scope', 'Users',
             firstName: null,
             lastName: null,
             email: null,
-            password: null,repeatPassword: null,
-            id: null
+            password: null,
+            repeatPassword: null,
+            id: null,
+            nickname: 'barney'
         };
 
         $scope.addUser = function () {
@@ -43,37 +45,52 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter','$scope', 'Users',
             });
         };
 
-        $scope.removeUser = function () {
 
 
 
-            $scope.removeUser = function (userId) {
-                console.log('removeUser(' + userId + ') called');
+        $scope.removeUser = function (userId) {
+            console.log('removeUser(' + userId + ') called');
 
-                Users.remove({
-                    userId: userId
-                }, function (data) {
-                    console.log('User removed');
+            Users.remove({
+                userId: userId
+            }, function (data) {
+                console.log('User removed');
 
-                    $scope.users = $filter('filter')($scope.users, {
-                        id: '!' + userId
-                    }, true);
-                }, function (data) {
-                    console.log('Error!');
-                    console.dir(data);
-                });
-            };
+                $scope.users = $filter('filter')($scope.users, {
+                    id: '!' + userId
+                }, true);
+            }, function (data) {
+                console.log('Error!');
+                console.dir(data);
+            });
+        };
 
 
+
+
+        $scope.updateUser = function (userId, index) {
+
+            console.log('updateUser(' + userId + ') called');
+
+            Users.update({
+                userId: userId,
+            }, $scope.users[index] , function (data) {
+                console.log('User updated');
+
+            }, function (data) {
+                console.log('Error!');
+                console.dir(data);
+            });
 
         };
 
-        $scope.updateUser = function () {
+        // Now call update passing in the ID first then the object you are updating
 
-        };
 
-        $scope.getUser = function () {
 
+        $scope.getUser = function (userId) {
+            console.log('Get user: ' + userId);
+            $scope.user = Users.get({userId: userId});
         };
 
         $scope.listUsers = function () {
