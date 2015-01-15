@@ -1,6 +1,6 @@
 /*global angular */
 
-var Companies = TicketApp.factory('Companies', ['$resource', function ($resource){
+var company = ticketApp.factory('Company', ['$resource', function ($resource){
     'use strict';
     
     return $resource('companies/:userId', {}, {

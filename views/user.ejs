@@ -1,4 +1,4 @@
-<div ng-controller="CompaniesCtrl">
+<div ng-controller="CompanyController">
 
     <div class="form-group">
         <label>
@@ -32,7 +32,7 @@
 
     </div>
 
-    <div ng-controller="UsersCtrl">
+    <div ng-controller="UserController">
 
         <form>
 
@@ -79,7 +79,7 @@
 
         <br/>
         <br/>
-        <button ng-click="listUsers1()" class="btn btn-md btn-warning">List users</button>
+        <button ng-click="listUsers()" class="btn btn-md btn-warning">List users</button>
         <button ng-click="listCompanies()" class="btn btn-md btn-warning">List companies</button>
 
         <input ng-model="query" classs="form-control" type="text" placeholder="Search">
@@ -94,19 +94,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="s in users | filter:query">
-                    <td><a ng-click="getUser(s.id)" href="http://localhost:1337/user/{{s.id}}">Profile</a></td>
-                    <td><b><a class="1" href="#" editable-text="s.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ s.firstName || "empty" }}</a></b>
+                <tr ng-repeat="u in users | filter:query">
+                    <td><a ng-click="getUser(u.id)" href="http://localhost:1337/user/{{u.id}}">Profile</a></td>
+                    <td><b><a class="1" href="#" editable-text="u.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
                     </td>
-                    <td><b><a class="1" href="#" editable-text="s.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ s.lastName || "empty" }}</a></b>
+                    <td><b><a class="1" href="#" editable-text="u.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.lastName || "empty" }}</a></b>
                     </td>
-                    <td><b><a class="1" href="#" editable-text="s.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ s.email || "empty" }}</a></b>
-                    </td>
-                    <td>
-                        <button ng-click="removeUser(s.id)" class="btn btn-sm btn-danger">DELETE</button>
+                    <td><b><a class="1" href="#" editable-text="u.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.email || "empty" }}</a></b>
                     </td>
                     <td>
-                        <button ng-click="updateUser(s.id, $index)" class="btn btn-sm btn-success">Update</button>
+                        <button ng-click="removeUser(u.id)" class="btn btn-sm btn-danger">DELETE</button>
+                    </td>
+                    <td>
+                        <button ng-click="updateUser(u.id, $index)" class="btn btn-sm btn-success">Update</button>
                     </td>
 
 

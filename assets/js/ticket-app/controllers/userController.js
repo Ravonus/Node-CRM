@@ -1,8 +1,7 @@
-/*global TicketApp */
+/*global ticketApp */
 /*global console */
 
-var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
-    function ($filter, $scope, Users) {
+var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', function ($filter, $scope, User) {
         'use strict';
 
         $scope.users = [];
@@ -35,7 +34,7 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
             delete $scope.user.id;
             delete $scope.user.repeatPassword;
 
-            Users.save($scope.user, function (data) {
+            User.save($scope.user, function (data) {
                 console.log('User saved!');
                 console.dir(data);
             }, function (data) {
@@ -50,7 +49,7 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
         $scope.removeUser = function (userId) {
             console.log('removeUser(' + userId + ') called');
 
-            Users.remove({
+            User.remove({
                 userId: userId
             }, function (data) {
                 console.log('User removed');
@@ -89,15 +88,12 @@ var UsersCtrl = TicketApp.controller('UsersCtrl', ['$filter', '$scope', 'Users',
 
         $scope.getUser = function (userId) {
             console.log('Get user: ' + userId);
-            $scope.user = Users.get({userId: userId});
+            $scope.user = User.get({userId: userId});
         };
 
         $scope.listUsers = function () {
-            $scope.users = Users.query();
+            $scope.users = User.query();
         };
         
-                $scope.listUsers1 = function () {
-            $scope.users = Users.query();
-        };
 
 }]);

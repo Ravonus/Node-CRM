@@ -1,6 +1,6 @@
-/*global TicketApp */
+/*global ticketApp */
 
-var CompanyCtrl = TicketApp.controller('CompaniesCtrl', ['$filter', '$scope', 'Companies', function ($filter, $scope, Companies) {
+var companyController = ticketApp.controller('CompanyController', ['$filter', '$scope', 'Company', function ($filter, $scope, Company) {
         'use strict';
 
         $scope.companies = [];
@@ -27,7 +27,7 @@ var CompanyCtrl = TicketApp.controller('CompaniesCtrl', ['$filter', '$scope', 'C
 
             delete $scope.company.id;
 
-            Companies.save($scope.company, function (data) {
+            Company.save($scope.company, function (data) {
                 console.log('Company saved!');
                 console.dir(data);
             }, function (data) {
@@ -36,14 +36,10 @@ var CompanyCtrl = TicketApp.controller('CompaniesCtrl', ['$filter', '$scope', 'C
             });
         };
 
-        $scope.removeCompany = function () {
-
-
-
             $scope.removeCompany = function (userId) {
                 console.log('removeCompany(' + userId + ') called');
 
-                Companies.remove({
+                Company.remove({
                     userId: userId
                 }, function (data) {
                     console.log('Company removed');
@@ -56,10 +52,7 @@ var CompanyCtrl = TicketApp.controller('CompaniesCtrl', ['$filter', '$scope', 'C
                     console.dir(data);
                 });
             };
-
-
-
-        };
+                                                                   
 
         $scope.updateCompany = function () {
 
@@ -70,7 +63,7 @@ var CompanyCtrl = TicketApp.controller('CompaniesCtrl', ['$filter', '$scope', 'C
         };
 
         $scope.listCompanies = function () {
-            $scope.companies = Companies.query();
+            $scope.companies = Company.query();
         };
 
 }]);
