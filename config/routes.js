@@ -39,8 +39,9 @@ module.exports.routes = {
     '/user/:userId': {
         view: 'user'
     },
-    '/user': {
-        view: 'user'
+    
+    '/group/:groupId': {
+        view: 'group'
     },
 
     '/home': {

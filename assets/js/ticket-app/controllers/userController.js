@@ -71,7 +71,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
             console.log('updateUser(' + userId + ') called');
 
-            Users.update({
+            User.update({
                 userId: userId,
             }, $scope.users[index], function (data) {
                 console.log('User updated');
@@ -82,7 +82,22 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             });
 
         };
+      
+        $scope.updateUserProfile = function (userId, userp) {
 
+            console.log('updateUser(' + userId + ') called');
+
+            User.update({
+                userId: userId,
+            }, $scope.users[userp], function (data) {
+                console.log('User updated');
+
+            }, function (data) {
+                console.log('Error!');
+                console.dir(data);
+            });
+
+        };
         // Now call update passing in the ID first then the object you are updating
 
 

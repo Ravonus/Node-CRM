@@ -1,8 +1,12 @@
 <div ng-controller="UserController" ng-init="getUserFromUrl(userId)">
     <b><a class="1" href="#" editable-text="user.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.firstName || "empty" }}</a></b>
     <br/>
-    <b><a class="1" href="#" editable-text="user.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
+    <b><a class="1" href="#" editable-text="user.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.lastName || "empty" }}</a></b>
     <br/>
-        <b><a class="1" href="#" editable-text="user.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
+    <b><a class="1" href="#" editable-text="user.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
     <br/>
+    <td>
+        <button ng-click="updateUser(user.id, $index)" class="btn btn-sm btn-success">Update</button>
+        
+    </td>
 </div>
