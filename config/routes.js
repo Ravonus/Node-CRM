@@ -39,7 +39,11 @@ module.exports.routes = {
     '/user/:userId': {
         view: 'user'
     },
-    
+
+    '/form/:formId': {
+        view: 'form'
+    },
+
     '/group/:groupId': {
         view: 'group'
     },

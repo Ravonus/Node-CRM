@@ -20,7 +20,7 @@ module.exports = {
 
         type: {
             type: 'string',
-            required: true,
+            required: true
         },
 
         role: {
