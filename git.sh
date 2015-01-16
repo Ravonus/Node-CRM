@@ -3,5 +3,5 @@ echo -n "Enter Commit for Node CRM: "
 read commit
 
 git add -A .
-git commit -am '$commit'
+git commit -am '${commit}'
 git push

@@ -1,7 +1,8 @@
 /*global ticketApp */
 /*global console */
 
-var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', function ($filter, $scope, User) {
+var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', '$rootScope', '$location',
+    function ($filter, $scope, User, $rootScope, $location) {
         'use strict';
 
         $scope.users = [];
@@ -72,7 +73,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
             Users.update({
                 userId: userId,
-            }, $scope.users[index] , function (data) {
+            }, $scope.users[index], function (data) {
                 console.log('User updated');
 
             }, function (data) {
@@ -88,12 +89,23 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
         $scope.getUser = function (userId) {
             console.log('Get user: ' + userId);
-            $scope.user = User.get({userId: userId});
+            $scope.user = User.get({
+                userId: userId
+            });
         };
 
         $scope.listUsers = function () {
             $scope.users = User.query();
         };
-        
+
+        $scope.getUserFromUrl = function () {
+            var userId = $location.path().split("/")[2] || "Unknown";
+                        console.log('Get user: ' + userId);
+            $scope.user = User.get({
+                userId: userId
+            });
+        };
+
+
 
 }]);
