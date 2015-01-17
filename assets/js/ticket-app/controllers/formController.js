@@ -3,136 +3,149 @@
 
 var formController = ticketApp.controller('FormController', ['$filter', '$scope', 'Form', '$rootScope', '$location',
     function ($filter, $scope, Form, $rootScope, $location) {
-        'use strict';
+                'use strict';
 
-        $scope.forms = [];
-
-
-        $scope.form = {
-            formName: null,
-            owner: null,
-            data: null,
-            id: null,
-        };
-
-        $scope.addForm = function () {
-
-            console.log('addForm() called');
-
-            if (!$scope.form.firstName || !$scope.form.lastName ||
-                !$scope.form.email || !$scope.form.password || !$scope.form.repeatPassword) {
-                // TODO something required is missing
-                console.log('Missing field');
-                return false;
-            } else if ($scope.form.password !== $scope.form.repeatPassword) {
-                // TODO the passwords don't match
-                console.log('Passwords don\'t match');
-                return false;
-            }
-
-            delete $scope.form.id;
-            delete $scope.form.repeatPassword;
-
-            Form.save($scope.form, function (data) {
-                console.log('Form saved!');
-                console.dir(data);
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
-        };
+                $scope.forms = [];
 
 
+                $scope.form = {
+                    name: null,
+                    owner: "self",
+                    data: "test",
+                    id: null,
+                };
 
+                $scope.addFormProfile = function () {
 
-        $scope.removeForm = function (formId) {
-            console.log('removeForm(' + formId + ') called');
+                    console.log('addForm() called');
 
-            Form.remove({
-                formId: formId
-            }, function (data) {
-                console.log('Form removed');
+                   angular.forEach($scope.forms, function (value, key) {
+                           Form.save($scope.key, function (f) {
+                                console.log('Form saved!');
+                                console.dir(f);
+                            }, function (data) {
+                                console.log('Error!');
+                                console.dir(data);
+                            });
+                        });
+                        };
 
-                $scope.forms = $filter('filter')($scope.forms, {
-                    id: '!' + formId
-                }, true);
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
-        };
+                        $scope.addForm = function () {
+
+                            console.log('addForm() called');
+
+                            if (!$scope.forms) {
+                                // TODO something required is missing
+                                console.log('Missing field');
+                                console.log($scope.forms);
+                                return false;
+                            }
+
+                            delete $scope.form.id;
+                            delete $scope.form.repeatPassword;
+
+                            Form.save($scope.forms, function (data) {
+                                console.log('Form saved!');
+                                console.dir(data);
+                            }, function (data) {
+                                console.log('Error!');
+                                console.dir(data);
+                            });
+                        };
 
 
 
 
-        $scope.updateForm = function (formId, index) {
+                        $scope.removeForm = function (formId) {
+                            console.log('removeForm(' + formId + ') called');
 
-            console.log('updateForm(' + formId + ') called');
+                            Form.remove({
+                                formId: formId
+                            }, function (data) {
+                                console.log('Form removed');
 
-            Form.update({
-                formId: formId,
-            }, $scope.forms[index], function (data) {
-                console.log('Form updated');
-
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
-
-        };
-
-        $scope.updateFormProfile = function (formId, form) {
-
-            console.log('updateForm(' + formId + ') called');
-
-            Form.update({
-                formId: formId,
-            }, $scope.forms[form], function (data) {
-                console.log('Form updated');
-
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
-
-        };
-        // Now call update passing in the ID first then the object you are updating
+                                $scope.forms = $filter('filter')($scope.forms, {
+                                    id: '!' + formId
+                                }, true);
+                            }, function (data) {
+                                console.log('Error!');
+                                console.dir(data);
+                            });
+                        };
 
 
 
-        $scope.getForm = function (formId) {
-            console.log('Get form: ' + formId);
-            $scope.form = Form.get({
-                formId: formId
-            });
-        };
 
-        $scope.listForms = function () {
-            $scope.forms = Form.query();
-        };
+                        $scope.updateForm = function (formId, index) {
 
-        $scope.getFormFromUrl = function () {
-            var formId = $location.path().split("/")[2] || "Unknown";
-            console.log('Get form: ' + formId);
-            $scope.form = Form.get({
-                formId: formId
-            });
-        };
-        
-        $scope.fields = [{id: 'field1'}];
-        
+                            console.log('updateForm(' + formId + ') called');
 
-        $scope.addField = function () {
-            var newItemNo = $scope.fields.length + 1;
-            $scope.fields.push({
-                'id': 'field' + newItemNo
-            });
-        };
+                            Form.update({
+                                formId: formId,
+                            }, $scope.forms[index], function (data) {
+                                console.log('Form updated');
 
-        $scope.showField = function (field) {
-            return field.id === $scope.fields[$scope.fields.length - 1].id;
-        };
+                            }, function (data) {
+                                console.log('Error!');
+                                console.dir(data);
+                            });
+
+                        };
+
+                        $scope.updateFormProfile = function (formId, form) {
+
+                            console.log('updateForm(' + formId + ') called');
+
+                            Form.update({
+                                formId: formId,
+                            }, $scope.forms[form], function (data) {
+                                console.log('Form updated');
+
+                            }, function (data) {
+                                console.log('Error!');
+                                console.dir(data);
+                            });
+
+                        };
+                        // Now call update passing in the ID first then the object you are updating
 
 
 
-}]);
+                        $scope.getForm = function (formId) {
+                            console.log('Get form: ' + formId);
+                            $scope.form = Form.get({
+                                formId: formId
+                            });
+                        };
+
+                        $scope.listForms = function () {
+                            $scope.forms = Form.query();
+                        };
+
+                        $scope.getFormFromUrl = function () {
+                            var formId = $location.path().split("/")[2] || "Unknown";
+                            console.log('Get form: ' + formId);
+                            $scope.form = Form.get({
+                                formId: formId
+                            });
+                        };
+
+                        $scope.forms = [{
+                            id: 'form1'
+                        }];
+
+
+                        $scope.addForm1 = function () {
+                            var newItemNo = $scope.forms.length + 1;
+                            $scope.forms.push({
+                                'id': 'form' + newItemNo
+                            });
+                        };
+
+                        $scope.showForm = function (form) {
+                            return form.id === $scope.forms[$scope.forms.length - 1].id;
+                        };
+
+
+
+                    }]);

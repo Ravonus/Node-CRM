@@ -8,19 +8,16 @@
 module.exports = {
 
     attributes: {
-        formName: {
+        name: {
             type: 'string',
-            required: true
         },
 
         owner: {
             type: 'string',
-            required: true
         },
 
         data: {
             type: 'string',
-            required: true
         },
     }
 };

@@ -6,9 +6,9 @@
         <br/>
         <b><a class="1" ng-href="#" editable-text="user.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
         <br/>
-        <button ng-click="updateUser(user.id, $index)" class="btn btn-sm btn-success">Update</button>
-     <div  <br/><b><a class="1" ng-href="#" ng-repeat="field in fields" editable-text="field.name" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ field.name  || "  Add Form  " }}</a></b><br/>
-        <button class="btn btn-sm btn-success" ng-show="showField(field)" ng-click="addField()">+</button>
+        <button ng-click="updateUserProfile(user.id, $index);addFormProfile()" class="btn btn-sm btn-success">Update</button>
+     <div  <br/><b><a class="1" ng-href="#" ng-repeat="form in forms" editable-text="form.name" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ form.name  || "  Add Form  " }}</a></b><br/>
+        <button class="btn btn-sm btn-success" ng-click="addForm1()">+</button>
         </div>
     </div>
 </div>
