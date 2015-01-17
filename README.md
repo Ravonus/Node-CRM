@@ -34,6 +34,12 @@ Running Everything
 4) Open http://localhost:1337
 
 
+Look at my custom field data under user profile ( with all editable text to change anything in the database)
+<a href="http://www.zimagez.com/zimage/screenshot-01162015-072614pm.php">
+  <img src="http://www.zimagez.com/miniature/screenshot-01162015-072614pm.php" />
+</a> 
+
+
 
 
 
