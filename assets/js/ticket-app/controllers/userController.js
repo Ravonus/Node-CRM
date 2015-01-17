@@ -82,14 +82,14 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             });
 
         };
-      
-        $scope.updateUserProfile = function (userId, userp) {
+
+        $scope.updateUserProfile = function (userId) {
 
             console.log('updateUser(' + userId + ') called');
 
             User.update({
                 userId: userId,
-            }, $scope.users[userp], function (data) {
+            }, $scope.user, function (data) {
                 console.log('User updated');
 
             }, function (data) {
@@ -115,7 +115,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
         $scope.getUserFromUrl = function () {
             var userId = $location.path().split("/")[2] || "Unknown";
-                        console.log('Get user: ' + userId);
+            console.log('Get user: ' + userId);
             $scope.user = User.get({
                 userId: userId
             });

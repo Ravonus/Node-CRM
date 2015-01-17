@@ -82,7 +82,7 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
             });
 
         };
-      
+
         $scope.updateGroupProfile = function (groupId, group) {
 
             console.log('updateGroup(' + groupId + ') called');
@@ -115,7 +115,7 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
 
         $scope.getGroupFromUrl = function () {
             var groupId = $location.path().split("/")[2] || "Unknown";
-                        console.log('Get group: ' + groupId);
+            console.log('Get group: ' + groupId);
             $scope.group = Group.get({
                 groupId: groupId
             });

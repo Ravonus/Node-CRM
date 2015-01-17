@@ -95,7 +95,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="u in users | filter:query">
-                    <td><a href="http://localhost:1337/user/{{u.id}}">Profile</a></td>
+                    <td><a href="/user/{{u.id}}">Profile</a>
+                    </td>
                     <td><b><a class="1" href="#" editable-text="u.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
                     </td>
                     <td><b><a class="1" href="#" editable-text="u.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.lastName || "empty" }}</a></b>

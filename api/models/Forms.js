@@ -22,9 +22,5 @@ module.exports = {
             type: 'string',
             required: true
         },
-        data2: {
-            type: 'string',
-            required: true
-        }
     }
 };

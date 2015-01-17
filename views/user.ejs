@@ -1,12 +1,16 @@
 <div ng-controller="UserController" ng-init="getUserFromUrl(userId)">
-    <b><a class="1" href="#" editable-text="user.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.firstName || "empty" }}</a></b>
-    <br/>
-    <b><a class="1" href="#" editable-text="user.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.lastName || "empty" }}</a></b>
-    <br/>
-    <b><a class="1" href="#" editable-text="user.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
-    <br/>
-    <td>
+    <div ng-controller="FormController">
+        <b><a class="1" href="#" editable-text="user.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.firstName || "empty" }}</a></b>
+        <br/>
+        <b><a class="1" ng-href="#" editable-text="user.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.lastName || "empty" }}</a></b>
+        <br/>
+        <b><a class="1" ng-href="#" editable-text="user.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.email || "empty" }}</a></b>
+        <br/>
         <button ng-click="updateUser(user.id, $index)" class="btn btn-sm btn-success">Update</button>
-        
-    </td>
+     <div  <br/><b><a class="1" ng-href="#" ng-repeat="field in fields" editable-text="field.name" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ field.name  || "  Add Form  " }}</a></b><br/>
+        <button class="btn btn-sm btn-success" ng-show="showField(field)" ng-click="addField()">+</button>
+        </div>
+    </div>
 </div>
+
+

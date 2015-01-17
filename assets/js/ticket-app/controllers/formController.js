@@ -12,7 +12,6 @@ var formController = ticketApp.controller('FormController', ['$filter', '$scope'
             formName: null,
             owner: null,
             data: null,
-            data2: null,
             id: null,
         };
 
@@ -81,7 +80,7 @@ var formController = ticketApp.controller('FormController', ['$filter', '$scope'
             });
 
         };
-      
+
         $scope.updateFormProfile = function (formId, form) {
 
             console.log('updateForm(' + formId + ') called');
@@ -114,10 +113,24 @@ var formController = ticketApp.controller('FormController', ['$filter', '$scope'
 
         $scope.getFormFromUrl = function () {
             var formId = $location.path().split("/")[2] || "Unknown";
-                        console.log('Get form: ' + formId);
+            console.log('Get form: ' + formId);
             $scope.form = Form.get({
                 formId: formId
             });
+        };
+        
+        $scope.fields = [{id: 'field1'}];
+        
+
+        $scope.addField = function () {
+            var newItemNo = $scope.fields.length + 1;
+            $scope.fields.push({
+                'id': 'field' + newItemNo
+            });
+        };
+
+        $scope.showField = function (field) {
+            return field.id === $scope.fields[$scope.fields.length - 1].id;
         };
 
 
