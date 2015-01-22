@@ -70,52 +70,50 @@
             </div>
 
             <div class="form-group">
-                <button ng-click="addUser()" class="btn btn-md btn-success">Create user</button>
+                <button ng-click="addUser()" class="btn btn--m btn--green btn--raised" lx-ripple>Create user</button>
             </div>
             <div class="form-group">
-                <button ng-click="addCompany()" class="btn btn-md btn-success">Create Company</button>
+                <button ng-click="addCompany()" class="btn btn--m btn--green btn--raised" lx-ripple>Create Company</button>
             </div>
         </form>
 
         <br/>
         <br/>
-        <button ng-click="listUsers()" class="btn btn-md btn-warning">List users</button>
-        <button ng-click="listCompanies()" class="btn btn-md btn-warning">List companies</button>
+        <button ng-click="listUsers()" class="btn btn--m btn--orange btn--raised" lx-ripple>List users</button>
+        <button ng-click="listCompanies()" class="btn btn--m btn--orange btn--raised" lx-ripple>List companies</button>
 
         <input ng-model="query" classs="form-control" type="text" placeholder="Search">
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="u in users | filter:query">
-                    <td><a href="/user/{{u.id}}">Profile</a>
-                    </td>
-                    <td><b><a class="1" href="#" editable-text="u.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
-                    </td>
-                    <td><b><a class="1" href="#" editable-text="u.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.lastName || "empty" }}</a></b>
-                    </td>
-                    <td><b><a class="1" href="#" editable-text="u.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.email || "empty" }}</a></b>
-                    </td>
-                    <td>
-                        <button ng-click="removeUser(u.id)" class="btn btn-sm btn-danger">DELETE</button>
-                    </td>
-                    <td>
-                        <button ng-click="updateUser(u.id, $index)" class="btn btn-sm btn-success">Update</button>
-                    </td>
+            <table class="data-table data-table--has-primary data-table--has-secondary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>add</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="u in users | filter:query">
+                        <td><a href="/user/{{u.id}}">Profile</a>
+                        </td>
+                        <td><b><a class="1" href="#" editable-text="u.firstName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
+                        </td>
+                        <td><b><a class="1" href="#" editable-text="u.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.lastName || "empty" }}</a></b>
+                        </td>
+                        <td><b><a class="1" href="#" editable-text="u.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.email || "empty" }}</a></b>
+                        </td>
+                        <td>
+                            <button ng-click="removeUser(u.id)" class="btn btn--m btn--red btn--raised" lx-ripple>DELETE</button>
+                            <button ng-click="updateUser(u.id, $index)" class="btn btn--m btn--green btn--raised" lx-ripple>Update</button>
+                        </td>
 
 
-                </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-striped">
+                    </tr>
+                </tbody>
+            </table>
+        <table class="data-table data-table--has-primary data-table--has-secondary">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -133,7 +131,7 @@
                     <td>{{c.location}}</td>
                     <td>{{c.billing}}</td>
                     <td>
-                        <button ng-click="removeCompany(c.id)" class="btn btn-sm btn-danger">DELETE</button>
+                        <button ng-click="removeCompany(c.id)" class="btn btn--m btn--red btn--raised" lx-ripple>DELETE</button>
                     </td>
                 </tr>
             </tbody>

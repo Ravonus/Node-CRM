@@ -1,6 +1,6 @@
 /*global angular */
 
-var ticketApp = angular.module('ticketApp', ['ngResource', 'xeditable']).config(function ($locationProvider) {
+var ticketApp = angular.module('ticketApp', ['ngResource', 'xeditable', 'lumx']).config(function ($locationProvider) {
     'use strict';
     $locationProvider.html5Mode({
         enabled: true,
