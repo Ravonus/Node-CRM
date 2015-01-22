@@ -1,5 +1,7 @@
 # Node CRM
 
+Example of current app - http://67.176.39.70:1337/  ( Please note this is on my laptop so it may not always be up )
+
 a [Sails](http://sailsjs.org) application (Using node) Using AngularJS for the front end. MongoDB for database managment. Bootstraps for layout. ( Will work on any device in the end ) 
 
 To run - You need to get NodeJS/SailsJS/AngularJS/Bootstrap
