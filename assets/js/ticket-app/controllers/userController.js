@@ -2,7 +2,7 @@
 /*global console */
 
 var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', '$rootScope', '$location',
-    function ($filter, $scope, User, $rootScope, $location) {
+    function ($filter, $scope, User, FormRet, $rootScope, $location) {
         'use strict';
 
         $scope.users = [];
@@ -120,6 +120,14 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 userId: userId
             });
         };
+        
+        
+             $scope.updateForms = function(typed){
+            // MovieRetriever could be some service returning a promise
+            $scope.updateusers.then(function(data){
+            $scope.users = data;
+            });
+        }
 
 
 

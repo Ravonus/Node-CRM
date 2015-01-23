@@ -5,7 +5,7 @@
     <title>New Sails App</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
     <!--  
@@ -33,11 +33,11 @@
     
     <!--STYLES END-->
     <link href="/css/style.css" rel="stylesheet">
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
     <link href="/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-    
     <link href="/bower_components/lumx/dist/css/lumx.css" rel="stylesheet">
+    <link href="/bower_components/ng-slider/dist/css/ng-slider.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/autocomplete.css" rel="stylesheet">
 
     <body>
         <%- body %>
@@ -96,17 +96,15 @@
     </body>
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-   
     <script src="/bower_components/velocity/velocity.js"></script>
-    
     <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
-
     <script src="/bower_components/lumx/dist/js/lumx.js"></script>
-    
+    <script src="/bower_components/ng-slider/dist/ng-slider.min.js"></script>
+    <script src="/js/autocomplete.js"></script>
+    <script src="/js/angucomplete.js"></script>
     <script src="/js/ticket-app/ticketApp.js"></script>
     <script src="/js/ticket-app/services/user.js"></script>
     <script src="/js/ticket-app/controllers/userController.js"></script>
