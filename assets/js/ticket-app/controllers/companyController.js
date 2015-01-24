@@ -4,6 +4,7 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
         'use strict';
 
         $scope.companies = [];
+        $scope.companyNames = [];
 
 
         $scope.company = {
@@ -64,6 +65,12 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
 
         $scope.listCompanies = function () {
             $scope.companies = Company.query();
+        };
+    
+            $scope.companiesList = function () {
+            angular.forEach($scope.companies, function (company) {
+                $scope.companyNames.push(company.companyName);
+                });
         };
 
 }]);

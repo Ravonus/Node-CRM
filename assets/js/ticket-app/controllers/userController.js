@@ -2,10 +2,12 @@
 /*global console */
 
 var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', '$rootScope', '$location',
-    function ($filter, $scope, User, FormRet, $rootScope, $location) {
+    function ($filter, $scope, User, $rootScope, $location, FormRet) {
         'use strict';
 
         $scope.users = [];
+
+         $scope.movies = [];
 
 
         $scope.user = {
@@ -113,6 +115,10 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             $scope.users = User.query();
         };
 
+        $scope.refresh = function () {
+            $window.location.reload();
+        };
+
         $scope.getUserFromUrl = function () {
             var userId = $location.path().split("/")[2] || "Unknown";
             console.log('Get user: ' + userId);
@@ -121,14 +127,11 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             });
         };
         
-        
-             $scope.updateForms = function(typed){
+        $scope.updateForms = function (typed) {
             // MovieRetriever could be some service returning a promise
-            $scope.updateusers.then(function(data){
-            $scope.users = data;
+            $scope.newforms = FormRet.getforms(typed);
+            $scope.newforms.then(function (data) {
+                $scope.users = data;
             });
         }
-
-
-
 }]);

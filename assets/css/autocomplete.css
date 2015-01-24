@@ -10,17 +10,25 @@
     width: 100%;
     padding: 1;
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 0px solid transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
 }
 
 .autocomplete ul{
   position: absolute;
-  left: 0;
   width: 100%;
-  border-left: 1px solid #888;
-  border-right: 1px solid #888;
-  border-bottom: 1px solid #888;
-  z-index: 1;
+  border-left: 3px solid #2196F3;
+  border-right: 3px solid #2196F3;
+  border-bottom: 3px solid #2196F3;
+  z-index: 100;
+  right: 0;
+  color: #F91616;
+  top: 66px;
+  background-color: white
 }
 
 .autocomplete li{
@@ -28,7 +36,11 @@
   list-style:none;
   width: 100%;
   padding:0.4em;
-  background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
 }
 
 .autocomplete li.active{
