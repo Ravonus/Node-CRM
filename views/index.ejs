@@ -10,42 +10,27 @@
                 </div>
 
                 <div class="col-md-2">
+                    <lx-text-field label="Last Name">
+                        <input type="text" ng-model="user.lastName">
+                    </lx-text-field>
+                </div>
+
+                <div class="col-md-2">
                     <lx-text-field label="Email Address">
                         <input type="text" ng-model="user.email">
                     </lx-text-field>
                 </div>
 
                 <div class="col-md-2">
-                    <lx-text-field label="Last Name">
-                        <input type="text" ng-model="user.lastName">
-                    </lx-text-field>
+                    <autocomplete ng-model="user.company" attr-placeholder="Company" data="companyNames" on-type="companiesList"></autocomplete>
                 </div>
-
-
-                <div class="col-md-2">
-                    <lx-text-field label="Password">
-                        <input type="text" ng-model="user.password">
-                    </lx-text-field>
-                </div>
-
-                <div class="col-md-2">
-                    <lx-text-field label="Repeat Password">
-                        <input type="text" ng-model="user.repeatPassword">
-                    </lx-text-field>
-                </div>
-
-                <div class="col-md-2">
-                    <autocomplete ng-model="company.companyName" attr-placeholder="Company" data="companyNames" on-type="companiesList"></autocomplete>
-                </div>
-
-
 
             </div>
 
             <div class="row">
                 <div class="col-sm-2 col-md-10 col-lg-10">
                     <button ng-click="listUsers()" class="btn btn--m btn--orange btn--raised" lx-ripple>List Users</button>
-                     <button ng-click="listCompanies()" class="btn btn--m btn--orange btn--raised" lx-ripple>List Companies</button>
+                    <button ng-click="listCompanies()" class="btn btn--m btn--orange btn--raised" lx-ripple>List Companies</button>
                     <button ng-click="addUser()" class="btn btn--m btn--green btn--raised" lx-ripple>Create User</button>
                 </div>
             </div>
@@ -58,7 +43,8 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>add</th>
+                                <th>Company</th>
+                                <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,6 +54,9 @@
                                 <td><b><a class="1" ng-href="#" editable-text="u.lastName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.lastName || "empty" }}</a></b>
                                 </td>
                                 <td><b><a class="1" ng-href="#" editable-text="u.email" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.email || "empty" }}</a></b>
+                                </td>
+
+                                <td><b><a class="1" ng-href="#" editable-text="u.company" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.company || "empty" }}</a></b>
                                 </td>
                                 <td>
                                     <div class="fab">
@@ -81,11 +70,11 @@
                                             </button>
                                             <!--
             -->
-                                            <button class="btn btn--l btn--green btn--fab" lx-ripple lx-tooltip="Save Changes" tooltip-position="bottom"><i class="mdi mdi--edit"></i>
+                                            <button class="btn btn--l btn--green btn--fab" lx-ripple lx-tooltip="Save Changes" tooltip-position="bottom"><i class="mdi mdi--edit" ng-click="updateUser(u.id, $index)"></i>
                                             </button>
                                             <!--
             -->
-                                            <button class="btn btn--l btn--red btn--fab" lx-ripple lx-tooltip="Delete" tooltip-position="bottom"><i class="mdi mdi--delete"></i>
+                                            <button class="btn btn--l btn--red btn--fab" lx-ripple lx-tooltip="Delete" tooltip-position="bottom"><i class="mdi mdi--delete" ng-click="removeUser(u.id)"></i>
                                             </button>
                                         </div>
                                     </div>

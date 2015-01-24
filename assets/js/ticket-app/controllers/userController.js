@@ -7,16 +7,12 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
         $scope.users = [];
 
-         $scope.movies = [];
-
-
         $scope.user = {
             firstName: null,
             lastName: null,
             email: null,
-            password: null,
-            repeatPassword: null,
-            id: null,
+            company: null,
+            id: null
         };
 
         $scope.addUser = function () {
@@ -24,30 +20,26 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             console.log('addUser() called');
 
             if (!$scope.user.firstName || !$scope.user.lastName ||
-                !$scope.user.email || !$scope.user.password || !$scope.user.repeatPassword) {
+                !$scope.user.email || !$scope.user.company) {
                 // TODO something required is missing
-                console.log('Missing field');
-                return false;
-            } else if ($scope.user.password !== $scope.user.repeatPassword) {
-                // TODO the passwords don't match
-                console.log('Passwords don\'t match');
+                console.log('Missing field' + $scope.user.firstName);
                 return false;
             }
 
             delete $scope.user.id;
-            delete $scope.user.repeatPassword;
 
             User.save($scope.user, function (data) {
                 console.log('User saved!');
                 console.dir(data);
+                delete $scope.user.email;
+                delete $scope.user.lastName;
+                delete $scope.user.firstName;
+                delete $scope.user.company;
             }, function (data) {
                 console.log('Error!');
                 console.dir(data);
             });
         };
-
-
-
 
         $scope.removeUser = function (userId) {
             console.log('removeUser(' + userId + ') called');
@@ -65,9 +57,6 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 console.dir(data);
             });
         };
-
-
-
 
         $scope.updateUser = function (userId, index) {
 
@@ -101,9 +90,6 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
         };
         // Now call update passing in the ID first then the object you are updating
-
-
-
         $scope.getUser = function (userId) {
             console.log('Get user: ' + userId);
             $scope.user = User.get({
@@ -126,12 +112,4 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 userId: userId
             });
         };
-        
-        $scope.updateForms = function (typed) {
-            // MovieRetriever could be some service returning a promise
-            $scope.newforms = FormRet.getforms(typed);
-            $scope.newforms.then(function (data) {
-                $scope.users = data;
-            });
-        }
 }]);

@@ -29,7 +29,8 @@
   color: #362D2D;
   font-size:10px;
   top: 66px;
-  background-color: white
+  background-color: #fff;
+  box-shadow: 10px 10px 5px #888888;
 
 }
 
@@ -38,11 +39,12 @@
   list-style:none;
   width: 100%;
   padding:0.4em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+background-color: #fff;
 }
 
 .autocomplete li.active{

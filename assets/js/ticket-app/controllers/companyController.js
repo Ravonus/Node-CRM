@@ -1,10 +1,10 @@
 /*global ticketApp */
 
-var companyController = ticketApp.controller('CompanyController', ['$filter', '$scope', 'Company', function ($filter, $scope, Company) {
+var companyController = ticketApp.controller('CompanyController', ['$filter', '$scope', 'Company',
+    function ($filter, $scope, Company) {
         'use strict';
 
         $scope.companies = [];
-
 
         $scope.company = {
             companyName: null,
@@ -36,23 +36,22 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             });
         };
 
-            $scope.removeCompany = function (userId) {
-                console.log('removeCompany(' + userId + ') called');
+        $scope.removeCompany = function (userId) {
+            console.log('removeCompany(' + userId + ') called');
 
-                Company.remove({
-                    userId: userId
-                }, function (data) {
-                    console.log('Company removed');
+            Company.remove({
+                userId: userId
+            }, function (data) {
+                console.log('Company removed');
 
-                    $scope.companies = $filter('filter')($scope.companies, {
-                        id: '!' + userId
-                    }, true);
-                }, function (data) {
-                    console.log('Error!');
-                    console.dir(data);
-                });
-            };
-                                                                   
+                $scope.companies = $filter('filter')($scope.companies, {
+                    id: '!' + userId
+                }, true);
+            }, function (data) {
+                console.log('Error!');
+                console.dir(data);
+            });
+        };
 
         $scope.updateCompany = function () {
 
@@ -65,12 +64,12 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
         $scope.listCompanies = function () {
             $scope.companies = Company.query();
         };
-    
-            $scope.companiesList = function () {
-                        $scope.companyNames = [];
+
+        $scope.companiesList = function () {
+            $scope.companyNames = [];
             angular.forEach($scope.companies, function (company) {
                 $scope.companyNames.push(company.companyName);
-                });
+            });
         };
 
 }]);
