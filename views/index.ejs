@@ -2,7 +2,9 @@
     <div ng-controller="CompanyController">
         <div ng-controller="UserController">
             <div class="row">
-
+                <div class="col-md-2">
+                    <autocomplete ng-model="user.company" attr-placeholder="Company" data="companyNames" on-type="companiesList"></autocomplete>
+                </div>
                 <div class="col-md-2">
                     <lx-text-field label="First Name">
                         <input type="text" ng-model="user.firstName">
@@ -20,13 +22,7 @@
                         <input type="text" ng-model="user.email">
                     </lx-text-field>
                 </div>
-
-                <div class="col-md-2">
-                    <autocomplete ng-model="user.company" attr-placeholder="Company" data="companyNames" on-type="companiesList"></autocomplete>
-                </div>
-
             </div>
-
             <div class="row">
                 <div class="col-sm-2 col-md-10 col-lg-10">
                     <button ng-click="listUsers()" class="btn btn--m btn--orange btn--raised" lx-ripple>List Users</button>
@@ -34,7 +30,6 @@
                     <button ng-click="addUser()" class="btn btn--m btn--green btn--raised" lx-ripple>Create User</button>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-10">
                     <table class="data-table data-table--has-primary data-table--has-secondary">
@@ -64,7 +59,6 @@
                                             <i class="mdi mdi--menu"></i>
                                             <i class="mdi mdi--menus"></i>
                                         </button>
-
                                         <div class="fab__actions fab__actions--right">
                                             <button class="btn btn--l btn--blue btn--fab" lx-ripple lx-tooltip="Profile" tooltip-position="bottom"><i class="mdi mdi--account-circle"></i>
                                             </button>
@@ -111,6 +105,47 @@
                     </table>
                 </div>
             </div>
+
+            <lx-dialog class="dialog dialog--l" id="company" onclose="closingDialog()">
+                <div class="dialog__header">
+                    <div class="toolbar bgc-light-blue-500">
+                        <span class="toolbar__label tc-white fs-title">
+                New Company Creation
+            </span>
+
+                        <div class="toolbar__right">
+                            <button class="btn btn--l btn--white btn--icon" lx-ripple ng-click="">
+                                <i class="mdi mdi--add"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dialog__content">
+                    <lx-tabs links-tc="light" links-bgc="light-blue-500" indicator="yellow-500" no-divider="true" layout="inline">
+                        <lx-tab heading="Company">
+                            <p class="p">{{ user.company }}</p>
+                        </lx-tab>
+
+                        <div class="s">
+                            <div ng-repeat="s in users">
+                                {{ s.firstName }} - {{ s.email }} - {{ s.lastName }}
+                            </div>
+                        </div>
+
+                        <lx-tab heading="More custom Data">
+                            <p class="p">More?</p>
+                        </lx-tab>
+
+                    </lx-tabs>
+                </div>
+
+                <div class="dialog__actions">
+                    <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancel</button>
+                    <button class="btn btn--m btn--black btn--flat" lx-ripple>Save</button>
+                </div>
+            </lx-dialog>
+
         </div>
     </div>
 </div>

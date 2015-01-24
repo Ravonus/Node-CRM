@@ -1,12 +1,10 @@
 /*global ticketApp */
 /*global console */
 
-var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', '$rootScope', '$location',
-    function ($filter, $scope, User, $rootScope, $location, FormRet) {
+var userController = ticketApp.controller('UserController', ['$filter', '$scope', 'User', '$rootScope', '$location', 'LxDialogService', 'LxNotificationService',
+    function ($filter, $scope, User, $rootScope, $location, LxDialogService, LxNotificationService) {
         'use strict';
-
         $scope.users = [];
-
         $scope.user = {
             firstName: null,
             lastName: null,
@@ -30,7 +28,10 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
             User.save($scope.user, function (data) {
                 console.log('User saved!');
-                console.dir(data);
+                var found = ($scope.companyNames.indexOf($scope.user.company) > -1);
+                if (!found) {
+                    LxDialogService.open('company');
+                }
                 delete $scope.user.email;
                 delete $scope.user.lastName;
                 delete $scope.user.firstName;
@@ -111,5 +112,9 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             $scope.user = User.get({
                 userId: userId
             });
+        };
+
+        $scope.closingDialog = function () {
+            LxNotificationService.info('Dialog closed!');
         };
 }]);
