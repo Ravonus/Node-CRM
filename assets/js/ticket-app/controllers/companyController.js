@@ -69,6 +69,7 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             angular.forEach($scope.companies, function (company) {
                 $scope.companyNames.push(company.companyName);
             });
+            $scope.companies = Company.query();
         };
 
     }]);

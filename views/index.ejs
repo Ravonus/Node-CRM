@@ -110,7 +110,7 @@
                 <div class="dialog__header">
                     <div class="toolbar bgc-light-blue-500">
                         <span class="toolbar__label tc-white fs-title">
-                                           <b><a class="1" ng-href="#" editable-text="user.company" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.company || "empty" }}</a></b>
+                                           <b><a class="1" ng-href="#" editable-text="company.companyName" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ company.companyName || "empty" }}</a></b>
             </span>
 
                         <div class="toolbar__right">
@@ -124,18 +124,52 @@
                 <div class="dialog__content">
                     <lx-tabs links-tc="light" links-bgc="light-blue-500" indicator="yellow-500" no-divider="true" layout="inline">
                         <lx-tab heading="Company">
-                            <b><a class="1" ng-href="#" editable-text="user.company" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
+
+                            <p>
+                                <div class="col-md-3">
+                                    <lx-text-field label="Location">
+                                        <input type="text" ng-model="company.location">
+                                    </lx-text-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <lx-text-field label="billing">
+                                        <input type="text" ng-model="company.billing">
+                                    </lx-text-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <lx-text-field label="email">
+                                        <input type="text" ng-model="company.email">
+                                    </lx-text-field>
+                            </p>
+                            </div>
+
                         </lx-tab>
                         <lx-tab heading="Custom">
-                            <p class="p">More?</p>
+                            <div class="col-md-3">
+                                <lx-text-field label="Billing Type">
+                                    <input type="text" ng-model="company.billing">
+                                </lx-text-field>
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                <lx-text-field label="Locations">
+                                    <input type="text" ng-model="company.location">
+                                </lx-text-field>
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                <lx-text-field label="email">
+                                    <input type="text" ng-model="company.email">
+                                </lx-text-field>
+                                </p>
+                            </div>
                         </lx-tab>
 
                     </lx-tabs>
                 </div>
-
                 <div class="dialog__actions">
                     <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancel</button>
-                    <button class="btn btn--m btn--black btn--flat" lx-ripple>Save</button>
+                    <button ng-click="userCompanySave(data)" class="btn btn--m btn--black btn--flat" lx-ripple>Save</button>
                 </div>
             </lx-dialog>
 
