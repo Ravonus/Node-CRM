@@ -18,8 +18,7 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
 
             console.log('addCompany() called');
 
-            if (!$scope.company.companyName || !$scope.company.email ||
-                !$scope.company.location || !$scope.company.billing) {
+            if (!$scope.company.companyName || !$scope.company.email || !$scope.company.location || !$scope.company.billing) {
                 // TODO something required is missing
                 console.log('Missing field');
                 return false;
@@ -72,4 +71,4 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             });
         };
 
-}]);
+    }]);

@@ -47,10 +47,8 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                     console.log('Error!');
                     console.dir(data);
                 });
-            };
+            }
         };
-
-
 
         $scope.removeUser = function (userId) {
             console.log('removeUser(' + userId + ') called');
@@ -127,4 +125,4 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         $scope.closingDialog = function () {
             LxNotificationService.info('Warning new company selected. This must be created.');
         };
-                }]);
+    }]);

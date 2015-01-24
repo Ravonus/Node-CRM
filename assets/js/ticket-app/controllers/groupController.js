@@ -14,15 +14,14 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
             email: null,
             password: null,
             repeatPassword: null,
-            id: null,
+            id: null
         };
 
         $scope.addGroup = function () {
 
             console.log('addGroup() called');
 
-            if (!$scope.group.firstName || !$scope.group.lastName ||
-                !$scope.group.email || !$scope.group.password || !$scope.group.repeatPassword) {
+            if (!$scope.group.firstName || !$scope.group.lastName || !$scope.group.email || !$scope.group.password || !$scope.group.repeatPassword) {
                 // TODO something required is missing
                 console.log('Missing field');
                 return false;
@@ -72,7 +71,7 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
             console.log('updateGroup(' + groupId + ') called');
 
             Group.update({
-                groupId: groupId,
+                groupId: groupId
             }, $scope.groups[index], function (data) {
                 console.log('Group updated');
 
@@ -88,7 +87,7 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
             console.log('updateGroup(' + groupId + ') called');
 
             Group.update({
-                groupId: groupId,
+                groupId: groupId
             }, $scope.groups[group], function (data) {
                 console.log('Group updated');
 
@@ -123,4 +122,4 @@ var groupController = ticketApp.controller('GroupController', ['$filter', '$scop
 
 
 
-}]);
+    }]);
