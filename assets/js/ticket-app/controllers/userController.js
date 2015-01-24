@@ -5,6 +5,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
     function ($filter, $scope, User, $rootScope, $location, LxDialogService, LxNotificationService) {
         'use strict';
         $scope.users = [];
+
         $scope.user = {
             firstName: null,
             lastName: null,
@@ -17,30 +18,39 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
             console.log('addUser() called');
 
-            if (!$scope.user.firstName || !$scope.user.lastName ||
-                !$scope.user.email || !$scope.user.company) {
+            if (!$scope.user.firstName || !$scope.user.lastName || !$scope.user.email || !$scope.user.company) {
                 // TODO something required is missing
-                console.log('Missing field' + $scope.user.firstName);
+                console.log('Missing field');
                 return false;
             }
 
             delete $scope.user.id;
 
-            User.save($scope.user, function (data) {
-                console.log('User saved!');
-                var found = ($scope.companyNames.indexOf($scope.user.company) > -1);
-                if (!found) {
-                    LxDialogService.open('company');
-                }
-                delete $scope.user.email;
-                delete $scope.user.lastName;
-                delete $scope.user.firstName;
-                delete $scope.user.company;
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
+
+            // User.save($scope.user, function (data) {
+            //         function (data) {
+            //   console.log('Error!');
+            //     console.dir(data);
+            //    });
+            var found = ($scope.companyNames.indexOf($scope.user.company) > -1);
+            if (!found) {
+                LxDialogService.open('company');
+            } else {
+                User.save($scope.user, function (data) {
+                    console.log('User saved!');
+                    delete $scope.user.firstName;
+                    delete $scope.user.lastName;
+                    delete $scope.user.email;
+                    delete $scope.user.company;
+                    console.dir(data);
+                }, function (data) {
+                    console.log('Error!');
+                    console.dir(data);
+                });
+            };
         };
+
+
 
         $scope.removeUser = function (userId) {
             console.log('removeUser(' + userId + ') called');
@@ -64,7 +74,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             console.log('updateUser(' + userId + ') called');
 
             User.update({
-                userId: userId,
+                userId: userId
             }, $scope.users[index], function (data) {
                 console.log('User updated');
 
@@ -80,7 +90,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             console.log('updateUser(' + userId + ') called');
 
             User.update({
-                userId: userId,
+                userId: userId
             }, $scope.user, function (data) {
                 console.log('User updated');
 
@@ -115,6 +125,6 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         };
 
         $scope.closingDialog = function () {
-            LxNotificationService.info('Dialog closed!');
+            LxNotificationService.info('Warning new company selected. This must be created.');
         };
-}]);
+                }]);

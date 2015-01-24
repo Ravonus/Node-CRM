@@ -64,11 +64,11 @@
                                             </button>
                                             <!--
             -->
-                                            <button class="btn btn--l btn--green btn--fab" lx-ripple lx-tooltip="Save Changes" tooltip-position="bottom"><i class="mdi mdi--edit" ng-click="updateUser(u.id, $index)"></i>
+                                            <button ng-click="updateUser(u.id, $index)" class="btn btn--l btn--green btn--fab" lx-ripple lx-tooltip="Save Changes" tooltip-position="bottom"><i class="mdi mdi--edit"></i>
                                             </button>
                                             <!--
             -->
-                                            <button class="btn btn--l btn--red btn--fab" lx-ripple lx-tooltip="Delete" tooltip-position="bottom"><i class="mdi mdi--delete" ng-click="removeUser(u.id)"></i>
+                                            <button ng-click="removeUser(u.id, $index)" class="btn btn--l btn--red btn--fab" lx-ripple lx-tooltip="Delete" tooltip-position="bottom"><i class="mdi mdi--delete"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                 <div class="dialog__header">
                     <div class="toolbar bgc-light-blue-500">
                         <span class="toolbar__label tc-white fs-title">
-                New Company Creation
+                                           <b><a class="1" ng-href="#" editable-text="user.company" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ user.company || "empty" }}</a></b>
             </span>
 
                         <div class="toolbar__right">
@@ -124,16 +124,9 @@
                 <div class="dialog__content">
                     <lx-tabs links-tc="light" links-bgc="light-blue-500" indicator="yellow-500" no-divider="true" layout="inline">
                         <lx-tab heading="Company">
-                            <p class="p">{{ user.company }}</p>
+                            <b><a class="1" ng-href="#" editable-text="user.company" style="color: #000000; text-decoration: none; border-bottom: 0px solid">{{ u.firstName || "empty" }}</a></b>
                         </lx-tab>
-
-                        <div class="s">
-                            <div ng-repeat="s in users">
-                                {{ s.firstName }} - {{ s.email }} - {{ s.lastName }}
-                            </div>
-                        </div>
-
-                        <lx-tab heading="More custom Data">
+                        <lx-tab heading="Custom">
                             <p class="p">More?</p>
                         </lx-tab>
 
