@@ -29,7 +29,7 @@
   color: #362D2D;
   font-size:10px;
   top: 66px;
-  background-color: #fff;
+  background-color: rgba(238, 238, 238, 0.85);
   box-shadow: 10px 10px 5px #888888;
 
 }
@@ -44,7 +44,7 @@
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
-background-color: #fff;
+  rgba(238, 238, 238, 0.85);
 }
 
 .autocomplete li.active{
