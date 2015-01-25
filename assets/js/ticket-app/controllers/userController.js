@@ -139,31 +139,39 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
             delete $scope.company.id;
 
-            Company.save($scope.company, function (data) {
-                console.log('Company saved!');
-                console.dir(data);
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
+            var found1 = ($scope.companyNames.indexOf($scope.company.companyName) > -1);
+            if (!found1) {
 
+                Company.save($scope.company, function (data) {
+                    console.log('Company saved!');
+                    console.dir(data);
+                }, function (data) {
+                    console.log('Error!');
+                    console.dir(data);
+                });
 
+                User.save($scope.user, function (data) {
+                    console.log('User saved!');
+                    dialogMsg = 'Company ' + $scope.company.companyName + ' has been created. ' +
+                        $scope.user.firstName + $scope.user.lastName + ' has been created.';
+                    delete $scope.user.firstName;
+                    delete $scope.user.lastName;
+                    delete $scope.user.email;
+                    delete $scope.user.company;
+                    delete $scope.company.companyName;
+                    delete $scope.company.email;
+                    delete $scope.company.location;
+                    delete $scope.company.billing;
+                    LxDialogService.close('company');
+                    console.dir(data);
+                    console.log(dialogMsg)
+                }, function (data) {
+                    console.log('Error!');
+                    console.dir(data);
+                });
+            } else {
+                LxNotificationService.info($scope.company.companyName + ' already exists');
+            }
 
-
-            User.save($scope.user, function (data) {
-                console.log('User saved!');
-                dialogMsg = $scope.user.company + ' has been created';
-                delete $scope.user.firstName;
-                delete $scope.user.lastName;
-                delete $scope.user.email;
-                delete $scope.user.company;
-                LxDialogService.close('company');
-                console.dir(data);
-                console.log(dialogMsg)
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
         };
-
-                }]);
+    }]);
