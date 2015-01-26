@@ -1,11 +1,11 @@
 /*global ticketApp */
 /*global console */
 
-var userController = ticketApp.controller('UserController', ['$filter', '$scope', '$window', 'User', '$rootScope', '$location', 'LxDialogService', 'LxNotificationService', 'Company',
-    function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService, LxNotificationService, Company) {
+var userController = ticketApp.controller('UserController', ['$filter', '$scope', '$window', 'User', '$rootScope', '$location', 'LxDialogService', 'LxNotificationService', 'Company', '$http', '$log',
+    function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService, LxNotificationService, Company, $http, $log) {
         'use strict';
         $scope.users = [];
-        var dialogMsg, dialogIcon, dialogType, upload, findByName;
+        var dialogMsg, dialogIcon, dialogType, upload, findByName, companyName;
 
         $scope.user = {
             firstName: null,
@@ -40,18 +40,33 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 $scope.company.companyName = $scope.user.company;
                 LxDialogService.open('company');
             } else {
-                User.save($scope.user, function (data) {
-                    console.log('User saved!');
 
-                    delete $scope.user.firstName;
-                    delete $scope.user.lastName;
-                    delete $scope.user.email;
-                    delete $scope.user.company;
-                    console.dir(data);
-                }, function (data) {
-                    console.log('Error!');
-                    console.dir(data);
-                });
+                $scope.company = [];
+                $http.get('/company/name/' + $scope.user.company)
+                    .success(function (data) {
+                        $scope.company = data;
+                    });
+
+                upload = {
+                    firstName: $scope.user.firstName,
+                    lastName: $scope.user.lastName,
+                    email: $scope.user.email,
+                    company: $scope.companyName,
+                    id: null
+                };
+
+                User.save(upload, function () {
+                        console.log('User saved!');
+                        delete $scope.user.firstName;
+                        delete $scope.user.lastName;
+                        delete $scope.user.email;
+                        delete $scope.user.company;
+                        console.dir(upload);
+                    },
+                    function (data) {
+                        console.log('Error!');
+                        console.dir(upload);
+                    });
             }
         };
         $scope.removeUser = function (userId) {
@@ -190,4 +205,4 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         console.dir(data);
                 });*/
 
-    }]);
+}]);
