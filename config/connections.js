@@ -80,7 +80,7 @@ module.exports.connections = {
         user: 'YOUR_POSTGRES_USER',
         password: 'YOUR_POSTGRES_PASSWORD',
         database: 'YOUR_POSTGRES_DB'
-    }
+    },
 
 
     /***************************************************************************
@@ -88,5 +88,19 @@ module.exports.connections = {
      * More adapters: https://github.com/balderdashy/sails                      *
      *                                                                          *
      ***************************************************************************/
+    // if you leave the adapter config unspecified
+    // in a model definition, 'default' will be used.
+    'default': 'memory',
+
+    // in-memory adapter for development only
+    memory: {
+        module: 'sails-memory'
+    },
+
+    // persistent adapter for development only
+    // (data is preserved when the server shuts down)
+    disk: {
+        module: 'sails-disk'
+    }
 
 };

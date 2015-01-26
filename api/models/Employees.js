@@ -8,6 +8,19 @@
 module.exports = {
 
     attributes: {
+
+        password: {
+            type: 'string',
+            required: true,
+            minLength: 8
+        },
+
+        email: {
+            type: 'string',
+            required: true,
+            unique: true
+        },
+
         firstName: {
             type: 'string',
             required: true
@@ -18,43 +31,25 @@ module.exports = {
             required: true
         },
 
-        email: {
-            type: 'string',
-            required: true,
-            unique: true
-        },
-
         role: {
             type: 'string',
             required: true,
             unique: true
         },
 
-        password: {
-            type: 'string',
-            required: true
-        },
-
         toJSON: function () {
             var obj = this.toObject();
             delete obj.password;
             return obj;
-        }
+        },
 
-    },
-
-    beforeCreate: function (attrs, next) {
-        var bcrypt = require('bcrypt');
-
-        bcrypt.genSalt(10, function (err, salt) {
-            if (err) return next(err);
-
-            bcrypt.hash(attrs.password, salt, function (err, hash) {
+        beforeCreate: function (attrs, next) {
+            var bcrypt = require('bcrypt');
+            bcrypt.hash(attrs.password, 10, function (err, hash) {
                 if (err) return next(err);
-
                 attrs.password = hash;
                 next();
             });
-        });
+        }
     }
 };

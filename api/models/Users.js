@@ -25,7 +25,7 @@
          },
 
          company: {
-             type: 'string',
+             model: 'Companies',
              required: true
          }
      }

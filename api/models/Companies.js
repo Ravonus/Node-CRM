@@ -27,7 +27,22 @@ module.exports = {
         billing: {
             type: 'string',
             required: true
+        },
+
+        Users: {
+            collection: 'Users',
+            via: 'company'
         }
 
+    },
+
+    enroll: function (options, cb) {
+
+        Users.findOne(options.company).exec(function (err, theUsers) {
+            if (err) return cb(err);
+            if (!theUser) return cb(new Error('Users not found.'));
+            theUser.enrolledIn.add(options.Users);
+            theUsers.save(cb);
+        });
     }
 };
