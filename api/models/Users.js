@@ -25,8 +25,7 @@
          },
 
          company: {
-             model: 'Companies',
-             required: true
+             model: 'Companies'
          }
      }
  };

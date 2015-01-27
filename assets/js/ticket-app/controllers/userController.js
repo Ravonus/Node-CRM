@@ -1,10 +1,10 @@
 /*global ticketApp */
 /*global console */
 var userController = ticketApp.controller('UserController', ['$filter', '$scope', '$window', 'User', '$rootScope', '$location', 'LxDialogService', 'LxNotificationService', 'Company', '$http', '$log',
-function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService, LxNotificationService, Company, $http, $log) {
+        function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService, LxNotificationService, Company, $http, $log) {
         'use strict';
         $scope.users = [];
-        var dialogMsg, dialogIcon, dialogType, upload, findByName, companyName, upload2;
+        var dialogMsg, dialogIcon, dialogType, upload, findByName, companyName, upload2, companyName2;
         $scope.user = {
             firstName: null,
             lastName: null,
@@ -38,20 +38,10 @@ function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService
                         $scope.companyName = data;
                         console.dir($scope.companyName.id);
 
-                        upload2 = [];
-                        upload2 = {
-                            firstName: $scope.user.firstName,
-                            lastName: $scope.user.lastName,
-                            email: $scope.user.email,
-                            company: $scope.companyName.id,
-                            id: null
-                        }
+                        upload2 = angular.copy($scope.user);
+                        upload2.company = $scope.companyName.id;
                         User.save(upload2, function () {
                                 console.log('User saved!');
-                                delete $scope.user.firstName;
-                                delete $scope.user.lastName;
-                                delete $scope.user.email;
-                                delete $scope.user.company;
                                 console.dir(upload2);
                             },
                             function (upload2) {
@@ -75,60 +65,68 @@ function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService
                 console.dir(data);
             });
         };
-        $scope.updateUser = function (userId, index) {
+
+        $scope.updateUser = function (index, data) {
 
             console.log('updateUser(' + userId + ') called');
-            User.update({
+
+            User.get({
                     userId: userId
                 },
 
                 $scope.users[index],
-                function () {
-                    console.log(data.company.id);
+                function (data) {
+                    $scope.companyName2 = data.company.companyName;
+                    //console.log($scope.users.firstName)
 
-                    upload = {
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        email: data.email,
-                        company: data.company.id,
-                        id: null
-                    };
+
+                    $scope.companyName = [];
+                    $http.get('/company/name/' + data.company.companyName)
+                        .success(function (data2) {
+                            $scope.companyName = data2;
+                            console.dir($scope.companyName.id);
+
+                            upload2 = {
+                                firstName: data.firstName,
+                                lastName: data.lastName,
+                                email: data.email,
+                                company: $scope.companyName.id,
+                                userId: null
+                            };
+                            upload2.company = $scope.companyName.id;
+
+                            User.update({
+                                    userId: userId
+                                }, upload2, function (upload2) {
+                                    console.log('User saved!ers');
+                                    //  console.dir(upload2);
+                                },
+                                function (upload2) {
+                                    console.log(upload2);
+                                    // console.dir(companyName.id);
+                                });
+                        });
+
+
+                },
+                function (data) {
+                    //console.log($scope.users.firstName)
+                });
+        };
+
+        $scope.updateUserProfile = function (userId) {
+            console.log('updateUser(' + userId + ') called');
+            User.update({
+                    userId: userId
+                },
+                $scope.user,
+                function (data) {
+                    console.log('User updated');
                 },
                 function (data) {
                     console.log('Error!');
                     console.dir(data);
                 });
-
-            User.update({
-                    userId: userId
-                },
-
-                $scope.users[upload],
-                function (upload) {
-                    console.log(data.company.id);
-
-                    Users.update({
-                        userId: userId
-
-                    });
-
-                },
-                function (data) {
-                    console.log('Error!');
-                    console.dir(upload);
-                });
-
-        };
-        $scope.updateUserProfile = function (userId) {
-            console.log('updateUser(' + userId + ') called');
-            User.update({
-                userId: userId
-            }, $scope.user, function (data) {
-                console.log('User updated');
-            }, function (data) {
-                console.log('Error!');
-                console.dir(data);
-            });
         };
         // Now call update passing in the ID first then the object you are updating
         $scope.getUser = function (userId) {
@@ -209,4 +207,4 @@ function ($filter, $scope, $window, User, $rootScope, $location, LxDialogService
 
 
 
-}]);
+        }]);
