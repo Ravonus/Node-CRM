@@ -54,7 +54,7 @@ module.exports.routes = {
     '/home': {
         view: 'homepage'
     },
-    'GET /company/name/:companyName': 'CompaniesController.findByName'
+    'GET /company/name/:companyName*': 'CompaniesController.findByName'
         /***************************************************************************
          *                                                                          *
          * Custom routes here...                                                    *

@@ -66,7 +66,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
             });
         };
 
-        $scope.updateUser = function (index, data) {
+        $scope.updateUser = function (userId, index, data) {
 
             console.log('updateUser(' + userId + ') called');
 
@@ -76,12 +76,13 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
                 $scope.users[index],
                 function (data) {
-                    $scope.companyName2 = data.company.companyName;
-                    //console.log($scope.users.firstName)
+                    $scope.companyName2 = $scope.users[index];
+                    console.dir($scope.companyName2)
+
 
 
                     $scope.companyName = [];
-                    $http.get('/company/name/' + data.company.companyName)
+                    $http.get('/company/name/' + $scope.companyName2.company.companyName)
                         .success(function (data2) {
                             $scope.companyName = data2;
                             console.dir($scope.companyName.id);
