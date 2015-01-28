@@ -37,12 +37,13 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                     .success(function (data) {
                         $scope.companyName = data;
                         console.dir($scope.companyName.id);
-
                         upload2 = angular.copy($scope.user);
                         upload2.company = $scope.companyName.id;
                         User.save(upload2, function () {
-                                console.log('User saved!');
-                                console.dir(upload2);
+                                delete $scope.user.firstName;
+                                delete $scope.user.lastName;
+                                delete $scope.user.email;
+                                delete $scope.user.company;
                             },
                             function (upload2) {
                                 console.log(upload2);
@@ -67,20 +68,15 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         };
 
         $scope.updateUser = function (userId, index, data) {
-
             console.log('updateUser(' + userId + ') called');
 
             User.get({
                     userId: userId
                 },
-
                 $scope.users[index],
                 function (data) {
                     $scope.companyName2 = $scope.users[index];
                     console.dir($scope.companyName2)
-
-
-
                     $scope.companyName = [];
                     $http.get('/company/name/' + $scope.companyName2.company.companyName)
                         .success(function (data2) {
@@ -107,14 +103,11 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                                     // console.dir(companyName.id);
                                 });
                         });
-
-
                 },
                 function (data) {
                     //console.log($scope.users.firstName)
                 });
         };
-
         $scope.updateUserProfile = function (userId) {
             console.log('updateUser(' + userId + ') called');
             User.update({
@@ -203,9 +196,4 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         console.log('Error!');
         console.dir(data);
         });*/
-
-
-
-
-
         }]);
