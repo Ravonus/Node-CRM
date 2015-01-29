@@ -1,7 +1,7 @@
 /*global ticketApp */
 
-var companyController = ticketApp.controller('CompanyController', ['$filter', '$scope', 'Company',
-    function ($filter, $scope, Company) {
+var companyController = ticketApp.controller('CompanyController', ['$filter', '$scope', 'User', 'Company', '$http',
+    function ($filter, $scope, User, Company, $http) {
         'use strict';
 
         $scope.companies = [];
@@ -11,6 +11,16 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             email: null,
             location: null,
             billing: null,
+            id: null
+        };
+
+        $scope.users = [];
+
+        $scope.user = {
+            firstName: null,
+            lastName: null,
+            email: null,
+            company: null,
             id: null
         };
 
@@ -52,6 +62,14 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             });
         };
 
+        $scope.removeAllCompany = function (userId) {
+
+            $http.get('/company/deleteId/' + userId)
+            $scope.companies = Company.query();
+            $scope.users = User.query();
+        };
+
+
         $scope.updateCompany = function () {
 
         };
@@ -71,5 +89,6 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
             });
             $scope.companies = Company.query();
         };
+
 
     }]);
