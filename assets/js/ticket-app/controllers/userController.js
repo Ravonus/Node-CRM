@@ -82,6 +82,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
 
                     $scope.companyName = [];
+                    $scope.companyName = [];
                     $http.get('/api/company/name/' + $scope.companyName2.company.companyName)
                         .success(function (data2) {
                                 if (data2.length < 1) {
