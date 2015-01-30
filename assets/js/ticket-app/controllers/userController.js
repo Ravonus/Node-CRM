@@ -82,9 +82,20 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
 
                     $scope.companyName = [];
-                    $http.get('/company/name/' + $scope.companyName2.company.companyName)
+                    $http.get('/api/company/name/' + $scope.companyName2.company.companyName)
                         .success(function (data2) {
-                                $scope.companyName = data2[0]
+                                if (data2.length < 1) {
+                                    dialogMsg = 'Warning new company selected. This must be created.';
+                                    dialogType = 'warning';
+                                    $scope.companyName = data2[0];
+                                    $scope.companyNames = data2;
+                                    $scope.user.firstName = $scope.users[index].firstName;
+                                    $scope.user.lastName = $scope.users[index].lastName;
+                                    $scope.user.email = $scope.users[index].email;
+                                    $scope.company.companyName = $scope.users[index].company.companyName;
+                                    LxDialogService.open('company');
+                                };
+                                $scope.companyName = data2[0];
                                 console.dir($scope.companyName.id);
 
                                 upload2 = {
@@ -94,6 +105,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                                     company: $scope.companyName.id,
                                     userId: null
                                 };
+
                                 upload2.company = $scope.companyName.id;
 
                                 User.update({
@@ -140,8 +152,12 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 userId: userId
             });
         };
-        $scope.listUsers = function () {
-            $scope.users = User.query();
+
+
+        $scope.listUsers = function (index) {
+            $scope.users = User.query(function () {
+
+            });
         };
         $scope.refresh = function () {
             $window.location.reload();
@@ -169,6 +185,8 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 console.log('Missing field');
                 return false;
             }
+            console.log($scope.companyNames);
+            console.log($scope.company.companyName);
             delete $scope.company.id;
             var found1 = ($scope.companyNames.indexOf($scope.company.companyName) > -1);
             if (!found1) {
@@ -200,16 +218,46 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 LxNotificationService.error($scope.company.companyName + ' already exists');
             }
         };
-        /*// console.log(data.id);
-        // console.dir(upload);
-        },
-        function (data) {
-        console.log('Error!');
-        console.dir(data);
-        });*/
 
 
-
+        $scope.userCompanySave2 = function () {
+            if (!$scope.company.companyName || !$scope.company.email || !$scope.company.location || !$scope.company.billing) {
+                // TODO something required is missing
+                LxNotificationService.warning('missing a field');
+                console.log('Missing field');
+                return false;
+            }
+            delete $scope.company.id;
+            var found1 = ($scope.companyNames.indexOf($scope.company.companyName) > -1);
+            if (!found1) {
+                Company.save($scope.company, function (data) {
+                    $scope.user.company = data.id;
+                    upload = {
+                        firstName: $scope.user.firstName,
+                        lastName: $scope.user.lastName,
+                        email: $scope.user.email,
+                        company: $scope.user.company,
+                        id: null
+                    };
+                    User.save(upload, function (userId) {
+                        // console.log('ADDED' + data);
+                        dialogMsg = 'Company ' + $scope.company.companyName + ' has been created.' + $scope.user.firstName + ' ' + $scope.user.lastName + ' has been created.';
+                        // dialogIcon = 'success'
+                        $scope.user = {};
+                        $scope.company = {};
+                        dialogType = 'success';
+                        LxDialogService.close('company');
+                        // console.dir(data);
+                        // console.log(dialogMsg)
+                    }, function (err) {
+                        console.log('Error!');
+                        console.dir(err);
+                    });
+                });
+            } else {
+                LxNotificationService.error($scope.company.companyName + ' already exists');
+            }
+        };
 
 
 }]);

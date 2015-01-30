@@ -55,12 +55,12 @@ module.exports.routes = {
         view: 'homepage'
     },
     'GET /api/company/name/:companyName': 'CompaniesController.findByName',
-
     'GET /api/company/delete/:companyName': 'CompaniesController.casDelete',
-
-    'GET /api/company/deleteId/[^.?]+?': 'CompaniesController.casDeleteId',
-
-    'GET /api/company/clientName/:companyName': 'CompaniesController.findByClientName'
+    'GET /api/company/deleteId/:companyName': 'CompaniesController.casDeleteId',
+    'GET /api/company/CompanyName/:companyName': 'CompaniesController.findByCompanyName',
+    'GET /api/company/location/:companyName': 'CompaniesController.findByCompanyLocation',
+    'GET /api/company/email/:companyName': 'CompaniesController.findByCompanyEmail',
+    'GET /api/company/billing/:companyName': 'CompaniesController.findByCompanyBilling'
         /***************************************************************************
          *                                                                          *
          * Custom routes here...                                                    *

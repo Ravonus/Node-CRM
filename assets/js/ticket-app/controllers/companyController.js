@@ -64,7 +64,7 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
 
         $scope.removeAllCompany = function (userId) {
 
-            $http.get('/company/deleteId/' + userId)
+            $http.get('/api/company/deleteId/' + userId)
             $scope.companies = Company.query();
             $scope.users = User.query();
         };
