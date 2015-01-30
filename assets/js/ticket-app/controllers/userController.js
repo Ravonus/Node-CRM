@@ -99,9 +99,9 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                                 console.dir($scope.companyName.id);
 
                                 upload2 = {
-                                    firstName: data.firstName,
-                                    lastName: data.lastName,
-                                    email: data.email,
+                                    firstName: $scope.users[index].firstName,
+                                    lastName: $scope.users[index].lastName,
+                                    email: $scope.users[index].email,
                                     company: $scope.companyName.id,
                                     userId: null
                                 };
