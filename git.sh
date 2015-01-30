@@ -5,3 +5,5 @@ read commit
 git add -A .
 git commit -am "${commit}"
 git push
+
+read -p "Press [Enter] key to start backup..."
