@@ -169,12 +169,13 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 4em;
+    height: .70em;
     font-weight: 200;
     line-height: 4em;
     color: #eee;
     background-color: #90A4AE;
     text-align: center;
+    z-index: 2000;
 }
 footer a {
     color: #333;

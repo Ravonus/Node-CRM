@@ -38,12 +38,23 @@
                     </lx-dropdown-menu>
                 </lx-dropdown>
 
-                <lx-search-filter closed theme="dark"></lx-search-filter>
+    </div>
             </div>
         </div>
     </div>
 
+                 <lx-select ng-model="ajax.selected" change="cbSelect.exec(newValue, oldValue)" placeholder="Search"
+                   choices="ajax.list"  filter="ajax.update(newValue, oldValue)" loading="{{ ajax.loading }}"
+                   min-length="2" allow-clear="true" selection-to-model="ajax.toModel(data, callback)"
+                   model-to-selection="ajax.toSelection(data, callback)">
+            <lx-select-selected>
+                {{ $selected.Title }} ({{ $selected.Year }})
+            </lx-select-selected>
 
+            <lx-select-choices>
+                {{ $choice.Title }} - {{ $choice.Type }}
+            </lx-select-choices>
+        </lx-select>
 
 
     <!-- Viewport mobile tag for sensible mobile support -->
@@ -72,7 +83,7 @@
     -->
 
     <!--STYLES-->
-
+    
     <!--STYLES END-->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
@@ -108,7 +119,7 @@
     -->
 
             <!--TEMPLATES-->
-
+            
             <!--TEMPLATES END-->
 
 
@@ -136,7 +147,7 @@
     -->
 
     </body>
-
+<footer></footer>
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
