@@ -5,6 +5,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
         'use strict';
         $scope.users = [];
         var dialogMsg, dialogIcon, dialogType, upload, findByName, companyName, upload2, companyName2;
+        var update = 0;
         $scope.user = {
             firstName: null,
             lastName: null,
@@ -33,7 +34,7 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 LxDialogService.open('company');
             } else {
                 $scope.companyName = [];
-                $http.get('/company/name/' + $scope.user.company)
+                $http.get('/api/company/name/' + $scope.user.company)
                     .success(function (data) {
                         $scope.companyName = data[0];
                         console.dir($scope.companyName.id);
@@ -82,13 +83,13 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
 
                     $scope.companyName = [];
-                    $scope.companyName = [];
                     $http.get('/api/company/name/' + $scope.companyName2.company.companyName)
                         .success(function (data2) {
                                 if (data2.length < 1) {
+                                    update = 1;
                                     dialogMsg = 'Warning new company selected. This must be created.';
                                     dialogType = 'warning';
-                                    $scope.companyName = data2[0];
+                                    $scope.companyName = data2;
                                     $scope.companyNames = data2;
                                     $scope.user.firstName = $scope.users[index].firstName;
                                     $scope.user.lastName = $scope.users[index].lastName;
@@ -200,20 +201,58 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                         company: $scope.user.company,
                         id: null
                     };
-                    User.save(upload, function () {
-                        // console.log('ADDED' + data);
-                        dialogMsg = 'Company ' + $scope.company.companyName + ' has been created.' + $scope.user.firstName + ' ' + $scope.user.lastName + ' has been created.';
-                        // dialogIcon = 'success'
-                        $scope.user = {};
-                        $scope.company = {};
-                        dialogType = 'success';
-                        LxDialogService.close('company');
-                        // console.dir(data);
-                        // console.log(dialogMsg)
-                    }, function (err) {
-                        console.log('Error!');
-                        console.dir(err);
-                    });
+
+                    if (update === 1) {
+
+
+
+                        upload2 = {
+                            firstName: $scope.user.firstName,
+                            lastName: $scope.user.lastName,
+                            email: $scope.user.email,
+                            company: $scope.company.id,
+                            userId: null
+                        };
+
+                        upload2.company = $scope.companyName.id;
+
+                        User.update({
+                                userId: userId
+                            }, upload2, function (upload2) {
+                                console.log('User saved!ers');
+                                //  console.dir(upload2);
+                            },
+                            function (upload2) {
+                                console.log(upload2);
+                                // console.dir(companyName.id);
+                            });
+
+
+
+
+
+
+
+                    } else {
+                        User.save(upload, function () {
+                            // console.log('ADDED' + data);
+                            dialogMsg = 'Company ' + $scope.company.companyName + ' has been created.' + $scope.user.firstName + ' ' + $scope.user.lastName + ' has been created.';
+                            // dialogIcon = 'success'
+                            $scope.user = {};
+                            $scope.company = {};
+                            console.log(update);
+                            dialogType = 'success';
+                            LxDialogService.close('company');
+                            // console.dir(data);
+                            // console.log(dialogMsg)
+                        }, function (err) {
+                            console.log('Error!');
+                            console.dir(err);
+                        });
+
+                    }
+
+
                 });
             } else {
                 LxNotificationService.error($scope.company.companyName + ' already exists');
