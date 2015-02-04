@@ -5,63 +5,64 @@
     <title>New Sails App</title>
 
 
-    <div class="card bgc-blue-grey-300 tc-white-1 p">
-        <div class="toolbar" color="red">
-            <div class="toolbar__left mr++">
-                <button class="btn btn--l btn--black btn--icon" lx-ripple>
-                    <i class="mdi mdi--menu"></i>
-                </button>
-            </div>
+        <div ng-controller="CompanyController">
+            <div ng-controller="UserController">
 
-            <span class="toolbar__label fs-title ml">The Node Desk</span>
+                <div class="card bgc-blue-grey-300 tc-white-1 p">
+                    <div class="toolbar" color="red">
+                        <div class="toolbar__left mr++">
+                            <button class="btn btn--l btn--black btn--icon" lx-ripple>
+                                <i class="mdi mdi--menu"></i>
+                            </button>
+                        </div>
 
-            <div class="toolbar__right">
-                <lx-dropdown position="right" from-top>
-                    <button class="btn btn--l btn--black btn--icon" lx-ripple lx-dropdown-toggle>
-                        <i class="mdi mdi--more-vert"></i>
-                    </button>
+                        <span class="toolbar__label fs-title ml">The Node Desk</span>
 
-                    <lx-dropdown-menu>
-                        <ul>
-                            <li><a class="dropdown-link">Action</a>
-                            </li>
-                            <li><a class="dropdown-link">Another action</a>
-                            </li>
-                            <li><a class="dropdown-link">Something else here</a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-link dropdown-link--is-header">Header</a>
-                            </li>
-                            <li><a class="dropdown-link">Separated link</a>
-                            </li>
-                        </ul>
-                    </lx-dropdown-menu>
-                </lx-dropdown>
+                        <div class="toolbar__right">
+                            <lx-dropdown position="right" from-top>
+                                <button class="btn btn--l btn--black btn--icon" lx-ripple lx-dropdown-toggle>
+                                    <i class="mdi mdi--more-vert"></i>
+                                </button>
 
-    </div>
-            </div>
-        </div>
-    </div>
+                                <lx-dropdown-menu>
+                                    <ul>
+                                        <li><a class="dropdown-link">Action</a>
+                                        </li>
+                                        <li><a class="dropdown-link">Another action</a>
+                                        </li>
+                                        <li><a class="dropdown-link">Something else here</a>
+                                        </li>
+                                        <li class="dropdown-divider"></li>
+                                        <li><a class="dropdown-link dropdown-link--is-header">Header</a>
+                                        </li>
+                                        <li><a class="dropdown-link">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </lx-dropdown-menu>
+                            </lx-dropdown>
 
-                 <lx-select ng-model="ajax.selected" change="cbSelect.exec(newValue, oldValue)" placeholder="Search"
-                   choices="ajax.list"  filter="ajax.update(newValue, oldValue)" loading="{{ ajax.loading }}"
-                   min-length="2" allow-clear="true" selection-to-model="ajax.toModel(data, callback)"
-                   model-to-selection="ajax.toSelection(data, callback)">
+                        </div>
+                    </div>
+                </div>
+   <div class="container">
+    <div flex-item>
+        <lx-select ng-model="selects.selectedPerson" placeholder="Search" choices="people" floating-label>
             <lx-select-selected>
-                {{ $selected.Title }} ({{ $selected.Year }})
+                {{ $selected.firstName }} - {{ $selected.lastName }}
             </lx-select-selected>
 
             <lx-select-choices>
-                {{ $choice.Title }} - {{ $choice.Type }}
+               Firstname:{{ $choice.firstName }}  Lastname:{{ $choice.lastName }}
             </lx-select-choices>
         </lx-select>
+    </div>
 
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+                <!-- Viewport mobile tag for sensible mobile support -->
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
-    <!--
+                <!--
         Stylesheets and Preprocessors
         ==============================
 
@@ -82,22 +83,22 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
-    <!--STYLES-->
-    
-    <!--STYLES END-->
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-    <link href="/bower_components/lumx/dist/css/lumx.css" rel="stylesheet">
-    <link href="/bower_components/ng-slider/dist/css/ng-slider.min.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/autocomplete.css" rel="stylesheet">
+                <!--STYLES-->
 
-    <body>
-        <%- body %>
+                <!--STYLES END-->
+                <link href="/css/style.css" rel="stylesheet">
+                <link href="/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+                <link href="/bower_components/lumx/dist/css/lumx.css" rel="stylesheet">
+                <link href="/bower_components/ng-slider/dist/css/ng-slider.min.css" rel="stylesheet">
+                <link href="/css/bootstrap.min.css" rel="stylesheet">
+                <link href="/css/autocomplete.css" rel="stylesheet">
+
+                <body>
+                    <%- body %>
 
 
 
-            <!--
+                        <!--
         Client-side Templates
         ========================
 
@@ -118,12 +119,12 @@
               stringfile before they're served.
     -->
 
-            <!--TEMPLATES-->
-            
-            <!--TEMPLATES END-->
+                        <!--TEMPLATES-->
+
+                        <!--TEMPLATES END-->
 
 
-            <!--
+                        <!--
 
       Client-side Javascript
       ========================
@@ -146,29 +147,29 @@
 
     -->
 
-    </body>
-<footer></footer>
-    <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    <script src="/bower_components/velocity/velocity.js"></script>
-    <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
-    <script src="/bower_components/lumx/dist/js/lumx.js"></script>
-    <script src="/bower_components/ng-slider/dist/ng-slider.min.js"></script>
-    <script src="/js/autocomplete.js"></script>
-    <script src="/js/angucomplete.js"></script>
-    <script src="/js/ticket-app/ticketApp.js"></script>
-    <script src="/js/ticket-app/services/user.js"></script>
-    <script src="/js/ticket-app/controllers/userController.js"></script>
-    <script src="/js/ticket-app/controllers/employeeController.js"></script>
-    <script src="/js/ticket-app/services/company.js"></script>
-    <script src="/js/ticket-app/controllers/companyController.js"></script>
-    <script src="/js/ticket-app/services/group.js"></script>
-    <script src="/js/ticket-app/controllers/groupController.js"></script>
-    <script src="/js/ticket-app/services/form.js"></script>
-    <script src="/js/ticket-app/controllers/formController.js"></script>
-    </body>
+                </body>
+                <footer></footer>
+                <script src="/js/dependencies/sails.io.js"></script>
+                <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+                <script src="/bower_components/angular/angular.min.js"></script>
+                <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+                <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+                <script src="/bower_components/velocity/velocity.js"></script>
+                <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
+                <script src="/bower_components/lumx/dist/js/lumx.js"></script>
+                <script src="/bower_components/ng-slider/dist/ng-slider.min.js"></script>
+                <script src="/js/autocomplete.js"></script>
+                <script src="/js/angucomplete.js"></script>
+                <script src="/js/ticket-app/ticketApp.js"></script>
+                <script src="/js/ticket-app/services/user.js"></script>
+                <script src="/js/ticket-app/controllers/userController.js"></script>
+                <script src="/js/ticket-app/controllers/employeeController.js"></script>
+                <script src="/js/ticket-app/services/company.js"></script>
+                <script src="/js/ticket-app/controllers/companyController.js"></script>
+                <script src="/js/ticket-app/services/group.js"></script>
+                <script src="/js/ticket-app/controllers/groupController.js"></script>
+                <script src="/js/ticket-app/services/form.js"></script>
+                <script src="/js/ticket-app/controllers/formController.js"></script>
+                </body>
 
 </html>

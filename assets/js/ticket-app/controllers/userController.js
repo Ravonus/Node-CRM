@@ -157,7 +157,18 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
 
 
         $scope.listUsers = function (index) {
+
+
             $scope.users = User.query(function () {
+
+                $scope.people = [];
+
+                angular.forEach($scope.users, function (user) {
+                    $scope.people.push(user);
+                   console.dir($scope.people);
+                });
+
+                $scope.selectedPersons = [$scope.people[2], $scope.people[4]];
 
             });
         };
@@ -298,6 +309,5 @@ var userController = ticketApp.controller('UserController', ['$filter', '$scope'
                 LxNotificationService.error($scope.company.companyName + ' already exists');
             }
         };
-
 
 }]);

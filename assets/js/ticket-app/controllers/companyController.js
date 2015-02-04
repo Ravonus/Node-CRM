@@ -80,6 +80,7 @@ var companyController = ticketApp.controller('CompanyController', ['$filter', '$
 
         $scope.listCompanies = function () {
             $scope.companies = Company.query();
+            $scope.selectedCompany = $scope.companies;
         };
 
         $scope.companiesList = function () {
