@@ -54,6 +54,12 @@ module.exports.routes = {
     '/home': {
         view: 'homepage'
     },
+
+        '/companies': {
+        view: 'companies'
+    },
+
+
     'GET /api/company/name/:companyName': 'CompaniesController.findByName',
     'GET /api/company/delete/:companyName': 'CompaniesController.casDelete',
     'GET /api/company/deleteId/:companyName': 'CompaniesController.casDeleteId',
